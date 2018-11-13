@@ -1,0 +1,16 @@
+<h1><%= @post.title %> </h1>
+<h3><%= @post.content %></h3>
+<p>Posted:<%= @post.format_time %></p>
+
+<ul>
+<% @post.comments.each do |comment| %>
+  <li><%= comment.user.name + ": " + comment.content %></li>
+<% end %>
+</ul>
+
+<%= form_for @post.comments.build do |f| %>
+  <%= f.label :content, "Comment:" %><br>
+  <%= f.text_area :content %>
+  <%= f.hidden_field :post_id %><br>
+  <%= f.submit %>
+<% end %>

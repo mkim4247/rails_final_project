@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mod2Project</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if session[:username] %>
+      Welcome <%= current_user.username %>
+      <%= link_to "Logout", logout_path, class: "right-align", method: "DELETE" %> <br>
+    <% else %>
+      <%= link_to "Login", login_path, class: "inline" %> <br>
+    <% end %>
+<hr>
+    <%= yield %>
+  </body>
+</html>
