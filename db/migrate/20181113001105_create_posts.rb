@@ -4,6 +4,10 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :title
       t.text :content
       t.integer :user_id
+      t.string :photo_url
+      t.string :address
+      t.float :latitude
+      t.float :longitude
       t.timestamps
     end
   end

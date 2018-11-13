@@ -1,6 +1,8 @@
+
 <h1><%= @post.title %> </h1>
 <h3><%= @post.content %></h3>
 <p>Posted:<%= @post.format_time %></p>
+<div><img src="<%= @post.photo_url %>" alt="photo"></div>
 
 <ul>
 <% @post.comments.each do |comment| %>
@@ -19,6 +21,17 @@
   <% end %>
 <% end %>
 
+<% if list = @post.lists.find {|list| list.user == current_user} %>
+  <%= form_tag list_path(list), method: :delete do %>
+  <%=  submit_tag "Unsave" %>
+  <% end %>
+<% else %>
+  <%= form_for @post.lists.build do |f| %>
+    <%= f.hidden_field :post_id %>
+    <%= f.submit "Save" %>
+  <% end %>
+<% end %>
+
 <br>
 <%= form_for @post.comments.build do |f| %>
   <%= f.label :content, "Comment:" %><br>
@@ -29,3 +42,23 @@
 <br>
 <%= link_to "Edit this post", edit_post_path(@post) %><br>
 <%= link_to "Delete this post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+
+
+<div id='map' style='width: 400px; height: 300px;'></div>
+<div>
+
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWtpbTQyNDciLCJhIjoiY2pvZzd5eXZyMDB3cjNrbGg2cnMwMTF3eiJ9.WaQ3X3fTHk59wUSytAuVWA'
+  if (!mapboxgl.supported()) {
+    alert('Your browser does not support Mapbox GL');
+} else {
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [<%= @post.longitude %>, <%= @post.latitude %>],
+        zoom: 15
+    });
+}
+</script>
+</div>

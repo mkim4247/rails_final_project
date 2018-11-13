@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     current_user
+    @posts = Post.all
   end
 
   def show

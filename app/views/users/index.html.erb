@@ -1,1 +1,5 @@
-<%= @user.name %>
+<% @posts.each do |post| %>
+  <%= link_to post.user.name, user_path(post.user)%><br>
+  <img src="<%= post.photo_url %>" alt="<%= post.title %>"><br>
+  <%= link_to post.title, post %><br><br>
+<% end %>

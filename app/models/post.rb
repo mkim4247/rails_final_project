@@ -2,7 +2,9 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments
   has_many :likes
-  has_many :saves
+  has_many :lists
+  geocoded_by :get_address
+  after_validation :geocode
 
   validates :title, presence: true
   validates :content, presence: true
@@ -12,5 +14,9 @@ class Post < ApplicationRecord
 
   def format_time
     self.created_at.strftime("%d %b %Y")
+  end
+
+  def get_address
+    self.address
   end
 end

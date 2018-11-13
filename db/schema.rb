@@ -25,19 +25,21 @@ ActiveRecord::Schema.define(version: 2018_11_13_175556) do
     t.integer "post_id"
   end
 
+  create_table "lists", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "photo_url"
     t.string "address"
-  end
-
-  create_table "saves", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
