@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <% if session[:username] %>
+    <% if !session[:username].blank? %>
       Welcome <%= current_user.username %>
       <%= link_to "Logout", logout_path, class: "right-align", method: "DELETE" %> <br>
     <% else %>
