@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_login
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -16,17 +17,36 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+  end
+
+  def edit
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to @post
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to users_path
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id)
+    params.require(:post).permit(:title, :content, :user_id, :photo_url, :address)
   end
 
   def require_login
     redirect_to login_path unless session.include? :username
+  end
+
+  def find_post
+    @post = Post.find(params[:id])
   end
 
 end
