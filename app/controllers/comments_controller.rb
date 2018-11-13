@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
 
   def create
-    # byebug
     comment = Comment.new(comment_params)
     comment.user_id = current_user.id
     if comment.save
