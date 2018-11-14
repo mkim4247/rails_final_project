@@ -27,7 +27,8 @@
 /public/assets
 .byebug_history
 
-secrets.sh
+#Ignore secrets.yml file
+secrets.yml
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key

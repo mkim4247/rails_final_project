@@ -47,18 +47,17 @@
 <div id='map' style='width: 400px; height: 300px;'></div>
 <div>
 
-
 <script>
-  mapboxgl.accessToken = ENV['#{TOKEN}']
+  mapboxgl.accessToken = '<%= ENV['API_TOKEN'] %>'
   if (!mapboxgl.supported()) {
     alert('Your browser does not support Mapbox GL');
-} else {
+  } else {
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
         center: [<%= @post.longitude %>, <%= @post.latitude %>],
         zoom: 15
     });
-}
+  }
 </script>
 </div>
