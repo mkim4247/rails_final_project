@@ -1,8 +1,21 @@
 <h1>Profile Page</h1>
 
-
+<!-- image -->
 <div>
   <%= image_tag(url_for(@user.avatar)) %>
 </div>
+
+<!-- Name -->
 <h3>Name: <%= @user.name %> </h3>
-<h3>Username: <%= @user.username %> </h3>
+
+<!-- Follow -->
+<% if follow = @user.follows.find {|follow| follow.following == current_user} %>
+  <%= form_tag follow_path(follow), method: :delete do %>
+  <%=  submit_tag "Unfollow" %>
+  <% end %>
+<% else %>
+  <%= form_for @user.follows.build do |f| %>
+    <%= f.hidden_field :user_id %>
+    <%= f.submit "Follow" %>
+  <% end %>
+<% end %>
