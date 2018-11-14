@@ -1,14 +1,14 @@
 class FollowsController < ApplicationController
 
   def create
-    follow = Follow.create(follow_params)
-    follow.following_id = current_user.id
+    follow = Follow.new(follow_params)
+    follow.user_id = current_user.id
     follow.save
-    redirect_to follow.following
+    redirect_to users_path
   end
 
   def destroy
-    follow = Follow.find_by(params[:id])
+    follow = Follow.find(params[:id])
     following = follow.following
     follow.destroy
     redirect_to following

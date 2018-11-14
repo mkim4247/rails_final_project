@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     current_user
-    @posts = Post.all
+    @posts = current_user.feed_posts
   end
 
   def show

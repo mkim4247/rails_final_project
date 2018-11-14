@@ -9,13 +9,14 @@
 <h3>Name: <%= @user.name %> </h3>
 
 <!-- Follow -->
-<% if follow = @user.follows.find {|follow| follow.following == current_user} %>
+<% follow = current_user.follows.find {|follow| follow.following == @user } %>
+<% if follow %>
   <%= form_tag follow_path(follow), method: :delete do %>
   <%=  submit_tag "Unfollow" %>
   <% end %>
 <% else %>
   <%= form_for @user.follows.build do |f| %>
-    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :following_id, value: @user.id %>
     <%= f.submit "Follow" %>
   <% end %>
 <% end %>

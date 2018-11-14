@@ -5,8 +5,10 @@ class User < ApplicationRecord
   has_many :lists
 
   has_many :follows
-  has_many :follower_relationships, foreign_key: :follower_id, class_name: 'Follow'
+  has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow'
   has_many :followers, through: :follower_relationships, source: :follower
+
+
   has_many :following_relationships, foreign_key: :user_id, class_name: 'Follow'
   has_many :following, through: :following_relationships, source: :following
 
@@ -19,8 +21,16 @@ class User < ApplicationRecord
 
   has_secure_password
 
+# grabs the most recent posts
   def feed_posts
-    
+    self.following.collect {|user| user.posts.last}
+  end
+
+  def get_following(current_user)
+    Follow.all.find do |follow|
+      follow.user_id == current_user.id
+      follow.following_id == self.id
+    end
   end
 
 end
