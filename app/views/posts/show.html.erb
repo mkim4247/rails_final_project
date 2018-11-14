@@ -49,7 +49,7 @@
 
 
 <script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoibWtpbTQyNDciLCJhIjoiY2pvZzd5eXZyMDB3cjNrbGg2cnMwMTF3eiJ9.WaQ3X3fTHk59wUSytAuVWA'
+  mapboxgl.accessToken = ENV['#{TOKEN}']
   if (!mapboxgl.supported()) {
     alert('Your browser does not support Mapbox GL');
 } else {
