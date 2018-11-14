@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :comments
-  has_many :likes
-  has_many :lists
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :lists, dependent: :destroy
   has_one_attached :avatar
 
   geocoded_by :get_address
