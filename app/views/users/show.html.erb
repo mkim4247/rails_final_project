@@ -1,4 +1,8 @@
 <h1>Profile Page</h1>
 
+
+<div>
+  <%= image_tag(url_for(@user.avatar)) %>
+</div>
 <h3>Name: <%= @user.name %> </h3>
 <h3>Username: <%= @user.username %> </h3>

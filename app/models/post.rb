@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :lists
+  has_one_attached :avatar
+
   geocoded_by :get_address
   after_validation :geocode
 
