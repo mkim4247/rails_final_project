@@ -20,7 +20,8 @@
 <br>
 
 <!-- Like button -->
-<% if like = @post.likes.find {|like| like.user == current_user} %>
+<% like = @post.likes.find {|like| like.user == current_user} %>
+<% if like %>
   <%= form_tag like_path(like), method: :delete do %>
   <%=  submit_tag "Unlike" %>
   <% end %>
@@ -32,7 +33,8 @@
 <% end %>
 
 <!-- Save button  -->
-<% if list = @post.lists.find {|list| list.user == current_user} %>
+<% list = @post.lists.find {|list| list.user == current_user} %>
+<% if list %>
   <%= form_tag list_path(list), method: :delete do %>
   <%=  submit_tag "Unsave" %>
   <% end %>
