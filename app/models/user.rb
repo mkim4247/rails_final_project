@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :lists
+  has_many :follows
 
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true
