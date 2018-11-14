@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy]
   resources :posts
-  resources :users, only: [:index, :new, :create, :show]
+  resources :users
   resources :likes, only: [:create, :destroy]
   resources :lists, only: [:create, :destroy]
   resources :follows, only: [:create, :destroy]

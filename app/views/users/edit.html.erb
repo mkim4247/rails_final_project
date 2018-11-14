@@ -1,14 +1,6 @@
-<label>Create a New User:</label>
+<h2>Edit Profile</h2>
 
-<ul>
-<% if @user.errors %>
-  <% @user.errors.full_messages.each do |error| %>
-  <li> <%= error %> </li>
-  <% end %>
-<% end %>
-</ul>
-<br>
-  <%= form_for @user do |f| %>
+<%= form_for @user do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   <%= f.label :username %>
@@ -17,5 +9,9 @@
   <%= f.email_field :email %><br>
   <%= f.label :password %>
   <%= f.password_field :password %><br>
+  <%= f.label "Profile Photo" %>
+  <%= f.file_field :avatar %><br>
+  <%= f.label "Biography" %><br>
+  <%= f.text_area :bio %><br>
   <%= f.submit %>
 <% end %>
