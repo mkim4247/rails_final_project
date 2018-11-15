@@ -1,0 +1,19 @@
+<h2>Search Results:</h2>
+Users:
+<% if @users %>
+  <% @users.each do |user| %>
+  <%= link_to user.username, user %>
+  <% end %>
+<% else %>
+  No Matching Users
+<% end %>
+<br>
+<hr>
+Posts:
+<% if @posts %>
+  <% @posts.each do |post| %>
+  <%= link_to post.title, post %>
+  <% end %>
+<% else %>
+  No Matching Posts
+<% end %>

@@ -1,11 +1,7 @@
 <h1>Profile Page</h1>
 
 <!-- image -->
-<div>
-  <% if @user.avatar %>
-    <%= image_tag(url_for(@user.avatar)) %>
-  <% end %> %>
-</div>
+
 
 <!-- Name -->
 <h3>Name: <%= @user.name %> </h3>

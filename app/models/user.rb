@@ -33,5 +33,12 @@ class User < ApplicationRecord
     end
   end
 
+  def self.search(search)
+    if search
+      if User.all.any? {|user| user.username == search}
+        User.all.select {|user| (user.username == search)}
+      end
+    end
+  end
 
 end
