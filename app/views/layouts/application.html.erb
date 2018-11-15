@@ -4,7 +4,7 @@
     <title>Mod2Project</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -21,10 +21,12 @@
   <body>
     <% if !current_user.blank? %>
       Welcome <%= current_user.name %>
-      <%= link_to "Logout", logout_path, class: "right-align", method: "DELETE" %> <br>
+       <%= link_to "Logout", logout_path, class: "right-align", method: "DELETE" %>
     <% else %>
-      <%= link_to "Login", login_path, class: "inline" %> <br>
+     <%= link_to "Login", login_path, class: "right-align" %>
     <% end %>
+    <%= link_to "Home", users_path, class: "right-align" %>
+    <%= link_to "Profile", current_user, class: "right-align" %>
 
     <%= form_tag search_path, method: "get" do %>
       <label>Search</label>
