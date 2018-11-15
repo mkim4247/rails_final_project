@@ -7,19 +7,23 @@
 <h3>Name: <%= @user.name %> </h3>
 
 <!-- Follow -->
-<% follow = current_user.follows.find {|follow| follow.following == @user } %>
-<% if follow %>
-  <%= form_tag follow_path(follow), method: :delete do %>
-  <%=  submit_tag "Unfollow" %>
-  <% end %>
-<% else %>
-  <%= form_for @user.follows.build do |f| %>
-    <%= f.hidden_field :following_id, value: @user.id %>
-    <%= f.submit "Follow" %>
+<% if @user != current_user %>
+  <% follow = current_user.follows.find {|follow| follow.following == @user } %>
+  <% if follow %>
+    <%= form_tag follow_path(follow), method: :delete do %>
+    <%=  submit_tag "Unfollow" %>
+    <% end %>
+  <% else %>
+    <%= form_for @user.follows.build do |f| %>
+      <%= f.hidden_field :following_id, value: @user.id %>
+      <%= f.submit "Follow" %>
+    <% end %>
   <% end %>
 <% end %>
 <br>
 
 <!-- Edit and delete links -->
-<%= link_to "Edit profile", edit_user_path %><br>
-<%= link_to "Delete account", user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
+<% if @user == current_user %>
+  <%= link_to "Edit profile", edit_user_path %><br>
+  <%= link_to "Delete account", user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
+<% end %>

@@ -12,7 +12,12 @@ class UsersController < ApplicationController
   end
 
   def new
+    if logged_in?
+      redirect_to users_path
+    else
     @user = User.new
+    render :new
+    end
   end
 
   def create
@@ -26,6 +31,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorized_for_user(@user)
   end
 
   def update
@@ -34,6 +40,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorized_for_user(@user)
     @user.destroy
     session.clear
     redirect_to new_user_path

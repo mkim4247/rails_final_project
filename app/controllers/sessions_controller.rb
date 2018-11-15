@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     if current_user
       redirect_to users_path
     else
-      render :new
+      render :layout => false
     end
   end
 

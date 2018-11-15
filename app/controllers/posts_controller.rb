@@ -20,6 +20,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    authorized_for_user(@post.user)
   end
 
   def update
@@ -31,6 +32,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorized_for_user(@post.user)
     @post.destroy
     redirect_to users_path
   end
