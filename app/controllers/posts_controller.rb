@@ -17,6 +17,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    if !@post
+      redirect_to users_path
+    end
   end
 
   def edit
@@ -48,7 +51,7 @@ class PostsController < ApplicationController
   end
 
   def find_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
   end
 
 end

@@ -23,7 +23,7 @@ class Post < ApplicationRecord
   end
 
   def self.search(search)
-    if search
+    if search != ""
       if Post.all.any? do |post|
         post.title.include?(search) || post.content.include?(search) || post.user.username == search
         end

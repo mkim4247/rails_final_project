@@ -5,5 +5,4 @@ class SearchController < ApplicationController
     @posts = Post.search(params[:search])
   end
 
-
 end
