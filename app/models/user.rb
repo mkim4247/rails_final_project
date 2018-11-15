@@ -31,7 +31,7 @@ class User < ApplicationRecord
       follow.user_id == current_user.id
       follow.following_id == self.id
     end
-  end
+  end 
 
   def self.search(search)
     if search
@@ -40,5 +40,4 @@ class User < ApplicationRecord
       end
     end
   end
-
 end

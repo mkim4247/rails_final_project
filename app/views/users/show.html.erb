@@ -1,10 +1,15 @@
 <h1>Profile Page</h1>
 
 <!-- image -->
-
+<div>
+  <% if @user.avatar.attached? %>
+    <%= image_tag(url_for(@user.avatar)) %>
+  <% end %>
+</div>
 
 <!-- Name -->
 <h3>Name: <%= @user.name %> </h3>
+<h4>Bio: <%= @user.bio %> </h4>
 
 <!-- Follow -->
 <% if @user != current_user %>
