@@ -1,5 +1,9 @@
 class ListsController < ApplicationController
 
+  def index
+    @lists = current_user.lists
+  end
+
   def create
     list = List.find_or_create_by(list_params)
     list.user_id = current_user.id

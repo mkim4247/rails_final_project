@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
   resources :likes, only: [:create, :destroy]
-  resources :lists, only: [:create, :destroy]
+  resources :lists, only: [:index, :create, :destroy]
   resources :follows, only: [:create, :destroy]
 
   get '/login', to: 'sessions#new'

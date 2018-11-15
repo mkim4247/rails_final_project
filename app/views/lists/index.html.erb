@@ -1,0 +1,10 @@
+<h1>Saved posts</h1>
+
+<!-- feed => either shows posts or message "no saved posts" -->
+<% if @lists.empty? %>
+  <%= "No saved posts." %>
+<% else %>
+  <% @lists.each do |list| %>
+    <%= link_to list.post.title, list.post %>
+  <% end %>
+<% end %>
