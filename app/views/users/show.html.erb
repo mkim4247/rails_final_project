@@ -9,6 +9,7 @@
 
 <!-- Name -->
 <h3>Name: <%= @user.name %> </h3>
+<h4>Bio: <%= @user.bio %> </h4>
 
 <!-- Follow -->
 <% follow = current_user.follows.find {|follow| follow.following == @user } %>

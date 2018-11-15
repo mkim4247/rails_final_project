@@ -1,5 +1,7 @@
 <h2>Edit Profile</h2>
 
+<%= render 'errors' %>
+
 <%= form_for @user do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>

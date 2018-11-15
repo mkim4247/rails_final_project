@@ -1,12 +1,7 @@
-<label>Create a New User:</label>
+<h2>Create a New User:</h2>
 
-<ul>
-<% if @user.errors %>
-  <% @user.errors.full_messages.each do |error| %>
-  <li> <%= error %> </li>
-  <% end %>
-<% end %>
-</ul>
+<%= render 'errors' %>
+
 <br>
   <%= form_for @user do |f| %>
   <%= f.label :name %>
@@ -17,5 +12,6 @@
   <%= f.email_field :email %><br>
   <%= f.label :password %>
   <%= f.password_field :password %><br>
+  <%= f.hidden_field :bio, value: "Add bio." %>
   <%= f.submit %>
 <% end %>
