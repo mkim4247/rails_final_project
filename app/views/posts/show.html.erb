@@ -7,9 +7,9 @@
 <div><img src="<%= @post.photo_url %>" alt="photo"></div>
 
 <!-- Image -->
-<div>
-  <%= image_tag(url_for(@post.avatar)) %>
-</div>
+<% if @user.avatar.attached? %>
+  <div><%= image_tag(url_for(@post.avatar))%></div>
+<% end %>
 
 <!-- Comments -->
 <ul>

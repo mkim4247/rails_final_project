@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    placeholder_avatar
     if @user.save
       session[:username] = @user.username
       redirect_to users_path
@@ -30,7 +31,12 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    redirect_to @user
+    update_avatar
+    if @user.save
+      redirect_to @user
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -52,4 +58,18 @@ class UsersController < ApplicationController
     def find_user
       @user = User.find(params[:id])
     end
+
+    def placeholder_avatar
+      if !params[:avatar]
+        @user.avatar.attach(io: File.open('app/assets/images/placeholder.png'), filename: 'placeholder.png', content_type: 'image/png')
+      end
+    end
+
+    def update_avatar
+      if params[:avatar]
+        @user.avatar.purge
+        @user.avatar.attach(params[:avatar])
+      end
+    end
+
 end
