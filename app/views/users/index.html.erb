@@ -1,4 +1,10 @@
-<% @posts.each do |post| %>
-  <%= post.user.name%><br>
-  <%= post.title%><br><br>
+
+<!-- when not following anyone, user's @posts = [nil] -->
+<% if @posts.include?(nil) %>
+  <%= "No posts yet!" %>
+<% else %>
+  <% @posts.each do |post| %>
+    <%= post.user.name%><br>
+    <%= post.title%><br><br>
+  <% end %>
 <% end %>
