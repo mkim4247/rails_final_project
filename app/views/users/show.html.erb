@@ -2,7 +2,9 @@
 
 <!-- image -->
 <div>
-  <%= image_tag(url_for(@user.avatar)) %>
+  <% if @user.avatar %>
+    <%= image_tag(url_for(@user.avatar)) %>
+  <% end %> %>
 </div>
 
 <!-- Name -->
@@ -20,3 +22,8 @@
     <%= f.submit "Follow" %>
   <% end %>
 <% end %>
+<br>
+
+<!-- Edit and delete links -->
+<%= link_to "Edit profile", edit_user_path %><br>
+<%= link_to "Delete account", user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>

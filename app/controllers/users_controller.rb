@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_login
   skip_before_action :require_login, only: [:new, :create]
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
 
   def index
     current_user
@@ -8,7 +9,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -26,13 +26,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to @user
+  end
+
+  def destroy
+    @user.destroy
+    session.clear
+    redirect_to new_user_path
   end
 
   private
@@ -43,5 +47,9 @@ class UsersController < ApplicationController
 
     def require_login
       redirect_to login_path unless session.include? :username
+    end
+
+    def find_user
+      @user = User.find(params[:id])
     end
 end
