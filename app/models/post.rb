@@ -21,4 +21,7 @@ class Post < ApplicationRecord
   def get_address
     self.address
   end
+
+
+
 end
