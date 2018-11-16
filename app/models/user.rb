@@ -45,25 +45,25 @@ class User < ApplicationRecord
   end
 
   def most_commented_post
-    self.posts.max_by {|post| post.comments.count}
+    self.posts.max_by {|post| post.comments.length}
   end
 
   def most_liked_post
-    self.posts.max_by {|post| post.likes.count }
+    self.posts.max_by {|post| post.likes.length }
   end
 
   def most_saved_post
-    self.posts.max_by {|post| post.lists.count}
+    self.posts.max_by {|post| post.lists.length}
   end
 
   def number_of_following
-    self.following.count
+    self.following.length
   end
 
   def number_of_followers
     Follow.all.select do |follow|
       follow.following == self
-    end.count
+    end.length
   end
 
   def most_recent_likes
