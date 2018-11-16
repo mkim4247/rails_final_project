@@ -9,18 +9,15 @@
   </head>
 
 <body id="body-page">
-
-  <h1><%= @user.name %> </h1>
-  <h4> <%= @user.bio %> </h4>
-
   <!-- image -->
-  <div>
-    <% if @user.avatar.attached? %>
-      <%= image_tag(url_for(@user.avatar)) %>
-    <% end %>
-  </div>
 
-  <!-- Name -->
+  <h1 class="ui block header">
+    <% if @user.avatar.attached? %>
+      <image src="<%=(url_for(@user.avatar))%>" class="ui medium circular image user_pic">
+    <% end %>
+    <%= @user.name %>
+  </h1>
+
 
   <!-- Follow -->
   <% if @user != current_user %>
@@ -36,7 +33,54 @@
       <% end %>
     <% end %>
   <% end %>
-  <br>
+
+  <!-- Followers and Following -->
+  <h3>Followers: <%= @user.number_of_followers %>
+  <h3>Following: <%= @user.number_of_following %>
+
+<!-- info -->
+<h4> <%= @user.bio %> </h4>
+
+<!-- Posts -->
+
+<div class="ui grid three column container">
+  <% @user.posts.last(9).each do |post| %>
+    <div class="column">
+    <% if post %>
+      <div class="ui segment large image">
+      <div class="ui card">
+      <div class="content">
+        <div class="left floated meta"><%= post.title %></div>
+        <div class="right floated meta"><%= post.format_time%></div>
+        <div class="image">
+          <% if post.avatar.attached? %>
+            <%= link_to (image_tag post.avatar), post %>
+          <% else %>
+            <br>
+            <%= link_to "No attached photo.", post %>
+          <% end %>
+        </div>
+        </div>
+        </div>
+        <div class="content">
+          <span class="right floated">
+          <i class="heart outline like icon"></i>
+          <%= pluralize(post.likes.length, "Like") %>
+          </span>
+          <i class="comment icon"></i>
+          <%= pluralize(post.comments.length, "Comment") %>
+        </div>
+        <div class="extra content">
+        <div class="ui large transparent left icon input">
+        </div>
+        </div>
+    </div>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+
+
 
   <!-- Edit and delete links -->
   <% if @user == current_user %>
