@@ -7,19 +7,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
-    </style>
   </head>
 
-  <body>
   <% if current_user %>
-  <div class="ui inverted menu">
+  <div class="ui inverted top fixed menu">
     <div class="left menu">
 
         <span class="item"> Welcome <%= current_user.name %> </span>
@@ -28,6 +19,7 @@
     <div class="right menu">
       <%= link_to "Home", users_path, class: "green item" %>
       <%= link_to "Profile", current_user, class: "green item" %>
+      <%= link_to "Activity", user_activity_path(current_user), class: "green item" %>
       <% if !current_user.blank? %>
         <%= link_to "Logout", logout_path, class: "green item", method: "DELETE" %>
       <% else %>
@@ -35,16 +27,18 @@
       <% end %>
 
       <div class="item">
-        <%= form_tag search_path, method: "get", class: "ui inverted icon input" do  %>
+        <%= form_tag search_path, method: "get", class: "ui transparent inverted left icon input" do  %>
+        <i class="search icon"></i>
           <%= text_field_tag :search %>
-          <%= submit_tag "Search", class: "ui button", id: "search"%>
+          <%= submit_tag "Search", placeholder: 'Enter search term...', class: "ui button" %>
         <% end %>
       </div>
 
     </div>
   </div>
 <% end %>
-    <%= yield %>
 
+  <body id="body-page">
+    <%= yield %>
   </body>
 </html>

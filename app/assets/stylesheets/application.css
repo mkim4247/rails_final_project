@@ -1,16 +1,83 @@
 /******************************** CUSTOM STYLES *******************************/
+.ui .button #search !important {
+  padding-left: 37.4px;
+}
 
 /******************************** Login page **********************************/
 .container {
-  display: block;
-  margin: auto;
-  max-width: 300px;
+  display: flex;
+  width: 350px;
+  margin: 0 auto;
+  align-content: center;
+  flex-direction: column;
 }
+.ui .submit {
+  display: flex;
+  margin: 0 auto;
+}
+.login-button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.28571429rem;
+  color: white;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
+}
+.login-button:hover {
+  background-color: #d01919;
+  color: #fff;
+  text-shadow: none;
+}
+
+.forms {
+  position: relative;
+  top: 5rem;
+  margin: 100px;
+}
+
 
 /*********************************** Feed *************************************/
 
 
 
+/*************************** Post#show ***********************************/
+#body-page {
+  position: relative;
+  top: 50px;
+}
+
+/******************************* User#edit ***********************************/
+#edit-form {
+  position: relative;
+  top: 5rem;
+  margin: 0 200px;
+}
+#update-button {
+  margin: 5px auto;
+  border: none;
+  background-color: transparent;
+  font-size: 1.28571429rem;
+  color: white;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
+}
+#update-button:hover {
+  background-color: #d01919;
+  color: #fff;
+  text-shadow: none;
+}
+.edit-h {
+  position: relative;
+  top: 5rem;
+  margin: 0 200px;
+}
+#bio-label {
+  position: relative;
+  top: 15px;
+}
+#error-flash{
+  margin: 20px 200px;
+}
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files

@@ -1,34 +1,45 @@
-<h1>Profile Page</h1>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Feed</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-<!-- image -->
-<div>
-  <% if @user.avatar.attached? %>
+<body id="body-page">
+
+  <h1><%= @user.name %> </h1>
+  <h4> <%= @user.bio %> </h4>
+
+  <!-- image -->
+  <div>
     <%= image_tag(url_for(@user.avatar)) %>
-  <% end %>
-</div>
+  </div>
 
-<!-- Name -->
-<h3>Name: <%= @user.name %> </h3>
-<h4>Bio: <%= @user.bio %> </h4>
+  <!-- Name -->
 
-<!-- Follow -->
-<% if @user != current_user %>
-  <% follow = current_user.follows.find {|follow| follow.following == @user } %>
-  <% if follow %>
-    <%= form_tag follow_path(follow), method: :delete do %>
-    <%=  submit_tag "Unfollow" %>
-    <% end %>
-  <% else %>
-    <%= form_for @user.follows.build do |f| %>
-      <%= f.hidden_field :following_id, value: @user.id %>
-      <%= f.submit "Follow" %>
+  <!-- Follow -->
+  <% if @user != current_user %>
+    <% follow = current_user.follows.find {|follow| follow.following == @user } %>
+    <% if follow %>
+      <%= form_tag follow_path(follow), method: :delete do %>
+      <%=  submit_tag "Unfollow" %>
+      <% end %>
+    <% else %>
+      <%= form_for @user.follows.build do |f| %>
+        <%= f.hidden_field :following_id, value: @user.id %>
+        <%= f.submit "Follow" %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
-<br>
+  <br>
 
-<!-- Edit and delete links -->
-<% if @user == current_user %>
-  <%= link_to "Edit profile", edit_user_path %><br>
-  <%= link_to "Delete account", user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
-<% end %>
+  <!-- Edit and delete links -->
+  <% if @user == current_user %>
+    <%= link_to "Edit profile", edit_user_path %><br>
+    <%= link_to "Delete account", user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
+  <% end %>
+
+</body>

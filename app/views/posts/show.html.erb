@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Feed</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+<body id="body-page">
+
 <!-- Title & Content -->
 <h1><%= @post.title %> </h1>
 <h4>by <%= @post.user.name %></h4>
@@ -66,6 +78,14 @@
 
 <!-- Map -->
 
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+    body { margin:10px; padding:0; }
+    #map { position:static; top:0; bottom:0; width:100%; }
+</style>
+
 <div id='map' style='width: 400px; height: 300px;'></div>
 <div>
   <script>
@@ -82,3 +102,6 @@
     }
   </script>
 </div>
+
+</body>
+</html>
