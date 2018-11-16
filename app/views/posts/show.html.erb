@@ -10,99 +10,104 @@
 
 <body id="body-page">
 
-<!-- Title & Content -->
-<h1><%= @post.title %> </h1>
-<h4>by <%= @post.user.name %></h4>
-<h3><%= @post.content %></h3>
-
-<!-- Date posted -->
-<p>Posted:<%= @post.format_time %></p>
 
 <!-- Image -->
-<% if @post.avatar.attached? %>
-  <div><%= image_tag @post.avatar%></div>
-<% elsif @post.photo_url %>
-    <div><img src="<%= @post.photo_url %>" alt="photo"></div>
-<% end %>
+  <div class="ui vertical stripe segment">
+    <div class="row">
+      <h1 class="ui header"><%= @post.title %> </h1>
+      <span>Posted:<%= @post.format_time %></span>
 
-<!-- Comments -->
-<ul>
-<% @post.comments.each do |comment| %>
-  <li><%= comment.user.name + ": " + comment.content %></li>
-<% end %>
-</ul>
-<br>
+      <h4>by <%= @post.user.name %></h4>
 
-<!-- Like button -->
-<% if @post.user != current_user %>
-  <% like = @post.likes.find {|like| like.user == current_user} %>
-  <% if like %>
-    <%= form_tag like_path(like), method: :delete do %>
-    <%=  submit_tag "Unlike" %>
-    <% end %>
-  <% else %>
-    <%= form_for @post.likes.build do |f| %>
-      <%= f.hidden_field :post_id %>
-      <%= f.submit "Like" %>
-    <% end %>
-  <% end %>
+        <% if @post.avatar.attached? %>
+          <%= image_tag @post.avatar, class: "ui medium right floated image"%>
+        <% elsif @post.photo_url %>
+            <img src="<%= @post.photo_url %>" alt="photo", class="ui medium left floated image">
+        <% end %>
 
-<!-- Save button  -->
-  <% list = @post.lists.find {|list| list.user == current_user} %>
-  <% if list %>
-    <%= form_tag list_path(list), method: :delete do %>
-    <%=  submit_tag "Unsave" %>
-    <% end %>
-  <% else %>
-    <%= form_for @post.lists.build do |f| %>
-      <%= f.hidden_field :post_id %>
-      <%= f.submit "Save" %>
-    <% end %>
-  <% end %>
-<% end %>
-<br>
+        <p><%= @post.content %></p>
+        <br>
+    </div>
 
-<!-- Comments form -->
-<%= form_for @post.comments.build do |f| %>
-  <%= f.label :content, "Comment:" %><br>
-  <%= f.text_area :content %>
-  <%= f.hidden_field :post_id %><br>
-  <%= f.submit %>
-<% end %>
-<br>
+    <div class="row">
 
-<!-- Links to edit and delete -->
-<% if @post.user == current_user %>
-  <%= link_to "Edit this post", edit_post_path(@post) %><br>
-  <%= link_to "Delete this post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
-<% end %>
+        <!-- Like button -->
+        <% if @post.user != current_user %>
+          <% like = @post.likes.find {|like| like.user == current_user} %>
+          <% if like %>
+            <%= form_tag like_path(like), method: :delete do %>
+            <%=  submit_tag "Unlike" %>
+            <% end %>
+          <% else %>
+            <%= form_for @post.likes.build do |f| %>
+              <%= f.hidden_field :post_id %>
+              <%= f.submit "Like" %>
+            <% end %>
+          <% end %>
 
-<!-- Map -->
+        <!-- Save button  -->
+          <% list = @post.lists.find {|list| list.user == current_user} %>
+          <% if list %>
+            <%= form_tag list_path(list), method: :delete do %>
+            <%=  submit_tag "Unsave" %>
+            <% end %>
+          <% else %>
+            <%= form_for @post.lists.build do |f| %>
+              <%= f.hidden_field :post_id %>
+              <%= f.submit "Save" %>
+            <% end %>
+          <% end %>
+        <% end %>
 
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
-<style>
-    body { margin:10px; padding:0; }
-    #map { position:static; top:0; bottom:0; width:100%; }
-</style>
+        <!-- Links to edit and delete -->
+        <% if @post.user == current_user %>
+          <%= link_to "Edit", edit_post_path(@post) %><br>
+          <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+        <% end %>
 
-<div id='map' style='width: 400px; height: 300px;'></div>
-<div>
-  <script>
-    mapboxgl.accessToken = '<%= ENV['API_TOKEN'] %>'
-    if (!mapboxgl.supported()) {
-      alert('Your browser does not support Mapbox GL');
-    } else {
-      var map = new mapboxgl.Map({
-          container: 'map',
-          style: 'mapbox://styles/mapbox/streets-v9',
-          center: [<%= @post.longitude %>, <%= @post.latitude %>],
-          zoom: 15
-      });
-    }
-  </script>
-</div>
+        <!-- Comments -->
+        <ul>
+        <% @post.comments.each do |comment| %>
+          <li><%= comment.user.name + ": " + comment.content %></li>
+        <% end %>
+        </ul>
+        <br>
+
+        <!-- Comments form -->
+        <%= form_for @post.comments.build do |f| %>
+          <%= f.label :content, "Comment:" %><br>
+          <%= f.text_area :content %>
+          <%= f.hidden_field :post_id %><br>
+          <%= f.submit %>
+        <% end %>
+        <br>
+      </div>
+
+
+      <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+      <script src='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+      <link href='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+      <style>
+        body { margin:10px; padding:0; }
+        #map { position:static; top:0; bottom:0; width:100%; }
+      </style>
+      <div id='map' style='width: 400px; height: 300px;'>
+        <script>
+          mapboxgl.accessToken = '<%= ENV['API_TOKEN'] %>'
+          if (!mapboxgl.supported()) {
+            alert('Your browser does not support Mapbox GL');
+          } else {
+            var map = new mapboxgl.Map({
+              container: 'map',
+              style: 'mapbox://styles/mapbox/streets-v9',
+              center: [<%= @post.longitude %>, <%= @post.latitude %>],
+              zoom: 15
+            });
+          }
+        </script>
+      </div>
+    </div>
+
 
 </body>
 </html>

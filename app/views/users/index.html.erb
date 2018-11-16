@@ -16,6 +16,7 @@
         <% if post != nil%>
         <div class="ui raised very padded text container segment">
           <%= link_to post.title, post %>
+          
         </div>
         <% end %>
       <% end %>
@@ -24,7 +25,7 @@
       <div class="ui segment">
         <%= link_to "Saved posts", lists_path %>
       <div class="ui segment">
-        <%= link_to "Create new post", new_post_path %>
+
       </div>
     </div>
 

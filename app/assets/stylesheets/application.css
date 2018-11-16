@@ -79,6 +79,13 @@
   margin: 20px 200px;
 }
 
+
+/*MAP*/
+
+#map.mapboxgl-canvas {
+  margin: 0;
+  margin-left: 500px;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

@@ -22,6 +22,7 @@
         <%= link_to "Home", users_path, class: "green item" %>
         <%= link_to "Profile", current_user, class: "green item" %>
         <%= link_to "Activity", user_activity_path(current_user), class: "green item" %>
+        <%= link_to "New post", new_post_path, class: "green item" %>
         <% if !current_user.blank? %>
           <%= link_to "Logout", logout_path, class: "green item", method: "DELETE" %>
         <% else %>
