@@ -1,12 +1,41 @@
 /******************************** CUSTOM STYLES *******************************/
+.ui .button #search !important {
+  padding-left: 37.4px;
+}
 
 /******************************** Login page **********************************/
 .container {
-  display: block;
-  margin: auto;
-  max-width: 300px;
+  display: flex;
+  width: 350px;
+  margin: 0 auto;
+  align-content: center;
+  flex-direction: column;
+}
+.ui .submit {
+  display: flex;
+  margin: 0 auto;
+}
+.login-button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.28571429rem;
+  color: white;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
+}
+.login-button:hover {
+  background-color: #d01919;
+  color: #fff;
+  text-shadow: none;
 }
 
+.forms {
+
+}
+
+.flash {
+  
+}
 /*********************************** Feed *************************************/
 
 

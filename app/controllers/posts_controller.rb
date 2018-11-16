@@ -27,7 +27,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
+    @post.update(post_params)
+    update_avatar
+    if @post.save
       redirect_to @post
     else
       render :edit
@@ -52,6 +54,13 @@ class PostsController < ApplicationController
 
   def find_post
     @post = Post.find_by(id: params[:id])
+  end
+
+  def update_avatar
+    if params[:avatar]
+      @post.avatar.purge
+      @post.avatar.attach(params[:avatar])
+    end
   end
 
 end
