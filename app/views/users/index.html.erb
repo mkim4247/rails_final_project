@@ -3,11 +3,12 @@
 <%= link_to "Profile", current_user %>
 
 <!-- when not following anyone, user's @posts = [nil] -->
-<% if @posts.include?(nil) %>
+<% if @posts.empty? %>
   <%= "No posts yet!" %>
 <% else %>
   <% @posts.each do |post| %>
-    <%= post.user.name%><br>
-    <%= post.title%><br><br>
+    <% if post != nil%>
+    <%= link_to post.title, post %>
+    <% end %>
   <% end %>
 <% end %>

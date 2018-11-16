@@ -32,4 +32,33 @@ class Post < ApplicationRecord
     end
   end
 
+  def self.get_most_commented
+    Post.all.max_by do |post|
+      post.comments.count
+    end
+  end
+
+  def self.get_most_recent
+    Post.all.sort_by do |post|
+      post.created_at
+    end.last
+  end
+
+  def self.get_random
+    Post.all.sample
+  end
+
+  def self.get_most_saved
+    Post.all.max_by do |post|
+      post.lists.count
+    end
+  end
+
+  def self.get_most_liked
+    Post.all.max_by do |post|
+      post.likes.count 
+    end
+  end
+
+
 end

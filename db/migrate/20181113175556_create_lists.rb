@@ -3,6 +3,7 @@ class CreateLists < ActiveRecord::Migration[5.2]
     create_table :lists do |t|
       t.integer :user_id
       t.integer :post_id
+      t.timestamps
     end
   end
 end

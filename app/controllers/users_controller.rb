@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_login
   skip_before_action :require_login, only: [:new, :create]
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :find_user, only: [:show, :edit, :update, :destroy, :activity]
 
   def index
     current_user
@@ -29,6 +29,10 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def activity
+    authorized_for_user(@user)
   end
 
   def edit

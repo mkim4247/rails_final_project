@@ -1,0 +1,28 @@
+<h2>Recent Activity</h2>
+TEST METHODS <br>
+User's most commented post: <%= link_to @user.most_commented_post.title, @user.most_commented_post %><br>
+User's most liked post: <%= link_to @user.most_liked_post.title, @user.most_liked_post %><br>
+User's most saved post: <%= link_to @user.most_saved_post.title, @user.most_saved_post %><br>
+Number of Following: <%= @user.number_of_following %><br>
+Number of Followers: <%= @user.number_of_followers %><br>
+Most commented post: <%= link_to Post.get_most_commented.title, Post.get_most_commented %><br>
+Most recent post: <%= link_to Post.get_most_recent.title, Post.get_most_recent %><br>
+Random post: <%= link_to Post.get_random.title, Post.get_random %><br>
+Most saved post: <%= link_to Post.get_most_saved.title, Post.get_most_saved %><br>
+Most liked post: <%= link_to Post.get_most_liked.title, Post.get_most_liked %><br>
+<hr>
+
+Most recent liked posts <br>
+<% @user.most_recent_likes.each do |like| %>
+  <%= link_to like.post.title, like.post %>
+<% end %><br>
+
+Most recent comments <br>
+<% @user.most_recent_comments.each do |comment| %>
+  <%= link_to comment.post.title, comment.post %>
+<% end %><br>
+
+Most recent followers <br>
+<% @user.most_recent_followers.each do |follow| %>
+  <%= link_to follow.follower.username, follow %>
+<% end %><br>
