@@ -30,16 +30,26 @@
 }
 
 .forms {
-
+  position: relative;
+  top: 5rem;
+  margin: 100px;
 }
 
 .flash {
-  
+
 }
+
+
+
 /*********************************** Feed *************************************/
 
 
 
+/*************************** Post#show ***********************************/
+#body-page {
+  position: relative;
+  top: 50px;
+}
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
