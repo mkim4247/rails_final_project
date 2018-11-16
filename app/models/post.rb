@@ -34,7 +34,7 @@ class Post < ApplicationRecord
 
   def self.get_most_commented
     Post.all.max_by do |post|
-      post.comments.count
+      post.comments.length
     end
   end
 
@@ -50,13 +50,13 @@ class Post < ApplicationRecord
 
   def self.get_most_saved
     Post.all.max_by do |post|
-      post.lists.count
+      post.lists.length
     end
   end
 
   def self.get_most_liked
     Post.all.max_by do |post|
-      post.likes.count 
+      post.likes.length
     end
   end
 

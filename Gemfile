@@ -29,8 +29,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'geocoder'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 gem 'image_processing', '~> 1.2'
+# gem "graphicsmagick"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
