@@ -9,19 +9,24 @@
   </head>
 
 <body id ="body-page">
-<!-- link to saved posts, should be moved to nav bar -->
-<%= link_to "Saved posts", lists_path %><br><br>
-
-<!-- when not following anyone, user's @posts = [nil] -->
-<% if @posts.empty? %>
-  <%= "No posts yet!" %>
-<% else %>
-  <% @posts.each do |post| %>
-    <% if post != nil%>
-    <%= link_to post.title, post %><br><br>
+    <% if @posts.empty? %>
+      <%= "No posts yet!" %>
+    <% else %>
+      <% @posts.each do |post| %>
+        <% if post != nil%>
+        <div class="ui raised very padded text container segment">
+          <%= link_to post.title, post %>
+        </div>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
+    <div class="ui right attached rail">
+      <div class="ui segment">
+        <%= link_to "Saved posts", lists_path %>
+      <div class="ui segment">
+        <%= link_to "Create new post", new_post_path %>
+      </div>
+    </div>
 
 </body>
 </html>
