@@ -4,7 +4,7 @@
     <title>Mod2Project</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -15,24 +15,30 @@
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
     </style>
-
   </head>
 
   <body>
-    <% if !current_user.blank? %>
-      Welcome <%= current_user.name %>
-      <%= link_to "Logout", logout_path, class: "right-align", method: "DELETE" %> <br>
-    <% else %>
-      <%= link_to "Login", login_path, class: "inline" %> <br>
-    <% end %>
+  <div class="ui inverted menu">
+    <div class="left menu">
+        <span class="item"> Welcome <%= current_user.name %> </span>
+    </div>
+    <div class="right menu">
+      <%= link_to "Home", users_path, class: "green item" %>
+      <%= link_to "Profile", current_user, class: "green item" %>
+      <% if !current_user.blank? %>
+        <%= link_to "Logout", logout_path, class: "green item", method: "DELETE" %>
+      <% else %>
+        <%= link_to "Login", login_path, class: "green item" %>
+      <% end %>
 
-    <%= form_tag search_path, method: "get" do %>
-      <label>Search</label>
-      <%= text_field_tag :search %>
-      <%= submit_tag %>
-    <% end %>
-    <hr>
-
+    <div class="ui category search item">
+      <%= form_tag search_path, method: "get" do %>
+        <%= text_field_tag :search %>
+        <i> <%= submit_tag "", class: "search icon"%></i>
+      <% end %>
+    </div>
+    </div>
+  </div>
     <%= yield %>
 
   </body>
