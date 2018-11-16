@@ -23,7 +23,10 @@ class User < ApplicationRecord
 
 # grabs the most recent posts
   def feed_posts
-    self.following.collect {|user| user.posts.last}
+    Follow.all.select do |follow| follow.follower == self
+    end.collect do |follow|
+      follow.following.posts.last
+    end
   end
 
   def get_following(current_user)
@@ -31,13 +34,60 @@ class User < ApplicationRecord
       follow.user_id == current_user.id
       follow.following_id == self.id
     end
-  end 
+  end
 
   def self.search(search)
     if search
-      if User.all.any? {|user| user.username == search}
-        User.all.select {|user| (user.username == search)}
+      if User.all.any? {|user| user.username == search || user.name == search}
+        User.all.select {|user| (user.username == search || user.name == search)}
       end
     end
   end
+
+  def most_commented_post
+    self.posts.max_by {|post| post.comments.count}
+  end
+
+  def most_liked_post
+    self.posts.max_by {|post| post.likes.count }
+  end
+
+  def most_saved_post
+    self.posts.max_by {|post| post.lists.count}
+  end
+
+  def number_of_following
+    self.following.count
+  end
+
+  def number_of_followers
+    Follow.all.select do |follow|
+      follow.following == self
+    end.count
+  end
+
+  def most_recent_likes
+    Like.all.select do |like|
+      like.post.user == self
+    end.sort_by do |like|
+      like.created_at
+    end.last(5)
+  end
+
+  def most_recent_comments
+    Comment.all.select do |comment|
+      comment.post.user == self
+    end.sort_by do |comment|
+      comment.created_at
+    end.last(5)
+  end
+
+  def most_recent_followers
+    Follow.all.select do |follow|
+      follow.following == self
+    end.sort_by do |follow|
+      follow.created_at
+    end.last(5)
+  end
+
 end
