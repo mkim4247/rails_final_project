@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/search', to: 'search#search'
   get '/users/:id/activity', to: 'users#activity', as: 'user_activity'
-  get "*path", to: 'application#redirect_bad_route'
+  get "*path", to: 'application#redirect_bad_route', constraints: lambda { |req| req.path.exclude? 'rails/active_storage'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end

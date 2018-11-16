@@ -15,7 +15,9 @@
 
   <!-- image -->
   <div>
-    <%= image_tag(url_for(@user.avatar)) %>
+    <% if @user.avatar.attached? %>
+      <%= image_tag(url_for(@user.avatar)) %>
+    <% end %>
   </div>
 
   <!-- Name -->

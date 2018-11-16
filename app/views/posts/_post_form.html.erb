@@ -4,7 +4,7 @@
   <%= f.label :photo_url %><br>
   <%= f.text_field :photo_url %><br>
   <%= f.label "Upload photo" %><br>
-  <%= f.file_field :avatar %><br>
+  <%= f.file_field :avatar, direct_upload: true %><br>
   <%= f.label :address %><br>
   <%= f.text_field :address %><br>
   <%= f.label :content %><br>

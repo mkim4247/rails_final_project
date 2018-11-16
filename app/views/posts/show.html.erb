@@ -17,11 +17,12 @@
 
 <!-- Date posted -->
 <p>Posted:<%= @post.format_time %></p>
-<div><img src="<%= @post.photo_url %>" alt="photo"></div>
 
 <!-- Image -->
 <% if @post.avatar.attached? %>
-  <div><%= image_tag(url_for(@post.avatar))%></div>
+  <div><%= image_tag @post.avatar%></div>
+<% elsif @post.photo_url %>
+    <div><img src="<%= @post.photo_url %>" alt="photo"></div>
 <% end %>
 
 <!-- Comments -->

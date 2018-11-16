@@ -29,8 +29,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'geocoder'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 gem 'image_processing', '~> 1.2'
+# gem "graphicsmagick"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -58,7 +60,6 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'rspec-rails', '~> 3.8'
-  gem "factory_bot_rails", "~> 4.0"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
