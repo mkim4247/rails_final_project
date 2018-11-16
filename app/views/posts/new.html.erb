@@ -1,12 +1,16 @@
-<label>Create a New Post:</label>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Feed</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-<ul>
-<% if @post.errors %>
-  <% @post.errors.full_messages.each do |error| %>
-  <li> <%= error %> </li>
-  <% end %>
-<% end %>
-</ul>
-
-
-<%= render 'post_form' %>
+  <body>
+    <h1 class="edit-h">Create new post</h1>
+    <%= render 'errors' %>
+    <%= render partial: 'post_form', locals: {text: "Create"} %>
+  </body>
+</html>

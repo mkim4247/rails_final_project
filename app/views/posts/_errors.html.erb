@@ -1,0 +1,7 @@
+<div class="forms" id="error-flash">
+<% if @post.errors %>
+  <% @post.errors.full_messages.each do |error| %>
+    <div class="ui error message"><%= error %> </div>
+  <% end %>
+<% end %>
+</div>
